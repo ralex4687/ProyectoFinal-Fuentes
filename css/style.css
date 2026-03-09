@@ -47,4 +47,57 @@ a:hover {
     filter: brightness(1.1);
 }
 
+.cantidad-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
 
+.cantidad-control button,
+.btn-eliminar,
+.btn-vaciar,
+.btn-finalizar {
+    cursor: pointer;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.btn-restar, .btn-sumar {
+    min-width: 36px;
+    background: #2a363b;
+    color: #fff;
+}
+
+.btn-restar:hover, .btn-sumar:hover {
+    filter: brightness(1.2);
+}
+
+.btn-eliminar {
+    background: #ff847c;
+    color: #fff;
+    margin-top: 8px;
+}
+
+.btn-vaciar {
+    background: #888;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.btn-finalizar {
+    background: #2a363b;
+    color: #fff;
+}
+
+#total-carrito {
+    margin-top: 24px;
+}
+
+#total-carrito.con-productos .total-precio {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
