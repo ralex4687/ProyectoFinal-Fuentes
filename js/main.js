@@ -38,9 +38,32 @@ function renderProductos(productsArray) {
         const card = document.createElement("div")
         card.innerHTML = `<h3>${producto.nombre}</h3>
                           <h4>$${producto.precio}</h4>
+                         <div>
+                         <button class="restar">-</button>
+                         <span class="cantidad">1</span>
+                         <button class="sumar">+</button>
+                        </div> 
                           <button class="productoAgregar" id="${producto.id}">Agregar</button>`;
         productContainer.appendChild(card);
+
+
+        let cantidad = 1;
         
+        const btnSumar = card.querySelector(".sumar");
+        const btnRestar = card.querySelector(".restar");
+        const cantidadSpan = card.querySelector(".cantidad");
+
+        btnSumar.onclick = () => {
+            cantidad++;
+            cantidadSpan.textContent = cantidad;
+        };
+        btnRestar.onclick = () => {
+            if (cantidad > 1) {
+                cantidad--;
+                cantidadSpan.textContent = cantidad;
+            }
+        }
+
     });
 
 }
