@@ -63,12 +63,13 @@ function agregarAlCarrito () {
             cartProducts = JSON.parse(localStorage.getItem("cartProducts"))|| [];
             const productId = e.currentTarget.id;
             const card = e.currentTarget.parentElement;
-            const cantidad = parseInt(card.querySelector(".cantidad").textContent);
+            
+            const cantidadElegida = parseInt(card.querySelector(".cantidad").textContent);
 
             const productoExistente = cartProducts.find(p => p.id == productId);
 
             if (productoExistente) {
-                productoExistente.cantidad = productoExistente.cantidad + 1;
+                productoExistente.cantidad = productoExistente.cantidad + cantidadElegida;
             }
             else {
                 const seleccionado = productos.find(p => p.id == productId);
@@ -77,8 +78,7 @@ function agregarAlCarrito () {
                     id: seleccionado.id,
                     nombre: seleccionado.nombre,
                     precio: seleccionado.precio,
-                    cantidad: 1
-                };
+                    cantidad: cantidadElegida
                   
                 cartProducts.push(productoNuevo);
  
@@ -87,6 +87,9 @@ function agregarAlCarrito () {
           
 
             localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+
+
+            card.querySelector(".cantidad").textContent = 1;
         };
 
     });
