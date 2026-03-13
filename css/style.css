@@ -97,10 +97,16 @@ body {
 
 .cantidad-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin-top: 10px;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin: 15px auto;
+    border-radius: 10px;
+    width: 90%;
+    box-sizing: border-box;
 }
 
 
@@ -109,11 +115,19 @@ body {
     color: #fff;
     cursor: pointer;
     border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
     font-weight: bold;
-    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.cantidad {
+    font-weight: bold;
+    color: #333;
+    min-width: 20px;
 }
 
 .productoAgregar, #vaciar-carrito, #finalizar-compra {
@@ -130,8 +144,14 @@ body {
     background: #99b898;
     color: white;
     border: none;
-    padding: 12px 20px;
+    padding: 12px 0;
     width: 100%;
+    border-radius: 8px;
+    font-weight: bold;
+    margin: 10px 0 0 0;
+    cursor: pointer;
+    display: block;
+    transition: 0.3s;
 }
 
 .productoAgregar:hover {
