@@ -1,7 +1,5 @@
 let cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
-
-
-let cartSection = document.getElementById("cart-section")
+let cartSection = document.getElementById("cart-section");
 
 function renderCarrito (cartItems){
     cartSection.innerHTML = "";
@@ -15,7 +13,7 @@ function renderCarrito (cartItems){
 
 
     cartItems.forEach((producto, index) => {
-        const card = document.createElement("div")
+        const card = document.createElement("div");
         card.innerHTML = `<h3>${producto.nombre}</h3>
                           <h4>Precio: $${producto.precio}</h4>
                           <div>
@@ -34,7 +32,7 @@ function renderCarrito (cartItems){
         btnSumar.onclick = () => {
             producto.cantidad++;
             actualizarCarrito();
-        }
+        };
 
         btnRestar.onclick = () => {
             if (producto.cantidad > 1) {
@@ -43,9 +41,7 @@ function renderCarrito (cartItems){
                 cartProducts.splice(index, 1);
             }
             actualizarCarrito();
-        }
-
-  
+        };
         
     });
     
@@ -53,10 +49,7 @@ function renderCarrito (cartItems){
 }
 
 function calcularTotal(cartItems) {
-    const total = cartItems.reduce((acumulador, producto) => {
-        return acumulador + (producto.precio * producto.cantidad);
-    }, 0);
-
+    const total = cartItems.reduce((acumulador, producto) => acumulador + (producto.precio * producto.cantidad), 0);
     const totalElemento = document.getElementById("total-carrito");
     
     if (cartItems.length === 0) {
@@ -74,8 +67,7 @@ function calcularTotal(cartItems) {
         };
 
         document.getElementById("finalizar-compra").onclick = mostrarRecibo;
-    };
-
+    }
 }
 
 function actualizarCarrito() {
@@ -83,29 +75,62 @@ function actualizarCarrito() {
     renderCarrito(cartProducts);
 }
 
-function mostrarRecibo(totalFinal) {
-    let detalleCompra = "Resumen de tu Compra:\n\n";
+function mostrarRecibo() {
+    const totalFinal = cartProducts.reduce((acumulador, producto) => acumulador + (producto.precio * producto.cantidad), 0);
+
+    let detalleHTML = `<div style="text-align: left;">
+        <p><strong>Productos:</strong></p>
+        <ul style="list-style: none; padding: 0;">`;
+        
 
     cartProducts.forEach(producto => {
-        detalleCompra += `${producto.nombre} - Cantidad: ${producto.cantidad} - Subtotal: $${producto.precio * producto.cantidad}\n`;
+        detalleHTML += `<li>${producto.nombre} (x${producto.cantidad}) - $${producto.precio * producto.cantidad}</li>`;
     });
+
+    detalleHTML += `</ul><br>
+        <p><strong>Total a pagar: $${totalFinal}</strong></p>
+        <hr>
+        <p>Complete sus datos de envío:</p>
+        <input id ="nombre-cliente" class="swal2-input" placeholder="Nombre Completo">
+        <input id="direccion-cliente" class="swal2-input" placeholder="Dirección de Envío">
+    </div>`;
+
+    Swal.fire({
+        title: "Desea confirmar su Pedido?",
+        html: detalleHTML,
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#99b898",
+        cancelButtonColor: "#ff847c",
+        confirmButtonText: "Sí, confirmar",
+        cancelButtonText: "Cancelar",
+        preConfirm: () => {
+            const nombreCliente = document.getElementById("nombre-cliente").value;
+            const direccionCliente = document.getElementById("direccion-cliente").value;
+
+            if (!nombreCliente || !direccionCliente) {
+                Swal.showValidationMessage("Por favor complete todos los campos");
+                return false;
+            }
+            return { nombre: nombreCliente, direccion: direccionCliente };
+  }
+
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "¡Compra Realizada!",
+                text: "Gracias por tu compra.",
+                icon: "success",
+                confirmButtonColor: "#99b898"
+            });
+
+             cartProducts = [];
+             actualizarCarrito();
+        }
+
+    });
+
+ 
 }
 
-
-Swal.fire({
-  title: "Desea confirmar su compra?",
-  text: "No podrás revertir esto!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#99b898",
-  cancelButtonColor: "#ff847c",
-  confirmButtonText: "Sí, confirmar"
-}).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire({
-      title: "¡Compra Realizada!",
-      text: "Gracias por tu compra.",
-      icon: "success"
-    });
-  }
-});
+renderCarrito(cartProducts);
