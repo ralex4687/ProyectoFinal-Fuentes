@@ -21,7 +21,7 @@ function renderProductos(productsArray) {
         const card = document.createElement("div")
         
         card.innerHTML = `
-            <div class="img-wrapper">
+            <div class="producto-img">
             <img src="${producto.imagen}">
             </div>
             <div class="card-body">

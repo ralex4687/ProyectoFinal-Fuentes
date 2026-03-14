@@ -8,26 +8,34 @@ function renderCarrito (cartItems){
         cartSection.innerHTML = "<h2>No has seleccionado ninguna producto</h2>";
         calcularTotal(cartItems);
         return;
-
     }
 
+    const listaContenedor = document.createElement("div");
+    listaContenedor.className = "carrito-lista-filas";
 
     cartItems.forEach((producto, index) => {
-        const card = document.createElement("div");
-        card.innerHTML = `<h3>${producto.nombre}</h3>
-                          <h4>Precio: $${producto.precio}</h4>
+        const fila = document.createElement("div");
+        fila.className = "item-carrito-lista";
+
+        fila.innerHTML = `<div class="info-producto">
+                          <span class="nombre">${producto.nombre}</span>
+                          <span class="precio">$${producto.precio}</span>
+                          </div>
                           <div class="cantidad-container">
                           <button class="restar">-</button>
-                          <span>${producto.cantidad}</span>
+                          <span class="cantidad">${producto.cantidad}</span>
                           <button class="sumar">+</button>
                           </div>
-                          <p>Subtotal: $${producto.precio * producto.cantidad}</p>`;
-                                              
+                          <div class="subtotal">
+                          <span>Subtotal: $${producto.precio * producto.cantidad}</span>
+                          <button class="eliminar-item">🗑️</button>
+                          </div>`;
 
-        cartSection.appendChild(card);
+        listaContenedor.appendChild(fila);
 
-        const btnSumar = card.querySelector(".sumar");
-        const btnRestar = card.querySelector(".restar");
+        const btnSumar = fila.querySelector(".sumar");
+        const btnRestar = fila.querySelector(".restar");
+        const btnEliminar = fila.querySelector(".eliminar-item");
 
         btnSumar.onclick = () => {
             producto.cantidad++;
@@ -42,9 +50,15 @@ function renderCarrito (cartItems){
             }
             actualizarCarrito();
         };
+
+        btnEliminar.onclick = () => {
+            cartProducts.splice(index, 1);
+            actualizarCarrito();
+        };
         
     });
-    
+
+    cartSection.appendChild(listaContenedor);
     calcularTotal(cartItems);
 }
 

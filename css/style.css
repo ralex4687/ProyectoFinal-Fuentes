@@ -8,11 +8,9 @@ html, body {
 }
 
 body {
-    
     background-color: #f4eeee; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333; 
-    padding: 0;
+    color: #333;
 }
 
 .navbar {
@@ -25,7 +23,6 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .nav-logo {
@@ -57,11 +54,6 @@ body {
     text-decoration: none;
     font-weight: bold;
     padding: 5px 10px;
-    transition: 0.3s;
-}
-
-.nav-links a:hover {
-    color: #2a363b;
 }
 
 #product-container, #cart-section {
@@ -82,19 +74,12 @@ body {
     flex-direction: column;
     overflow: hidden;
     padding: 0;
-    min-height: auto;
-}
-
-#product-container div:hover, #cart-section div:hover {
-    transform: translateY(-5px);
 }
 
 .producto-img{
     width: 100%;
     height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
+    overflow: hidden;
 }
 
 .cantidad-container {
@@ -121,11 +106,9 @@ body {
     width: 32px;
     height: 32px;
     border-radius: 10px;
-    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
 }
 
 .cantidad {
@@ -147,20 +130,43 @@ body {
 .productoAgregar {
     background: #99b898;
     color: white;
-    border: none;
-    padding: 12px 0;
     width: 100%;
-    border-radius: 8px;
-    font-weight: bold;
-    margin: 10px 0 0 0;
-    cursor: pointer;
-    display: block;
-    transition: 0.3s;
 }
-
+h2 {
+    text-align: center;
+    width: 100%;
+    margin: 40px 0;
+}
 .productoAgregar:hover {
     background: #fecea8;
     color: #333;
+}
+
+.barra-navegacion {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin: 40px 0 !important;
+}
+
+.barra-navegacion a {
+    background-color: #99b898;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.titulo-carrito { 
+    text-align: center; 
+    margin: 30px 0; 
+}
+
+#total-carrito { 
+    text-align: center; 
+    font-size: 1.5rem; 
+    margin: 30px 0; 
 }
 
 #vaciar-carrito {
@@ -192,17 +198,6 @@ a {
 a:hover {
     color: #ff847c;
     text-decoration: underline;
-}
-
-.link-carrito {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #99b898;
-    color: white;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: 0.3s;
 }
 
 .carrito-container {
@@ -243,4 +238,11 @@ a:hover {
 
 .card-body h3, .card-body h4 {
     margin: 5px 0;
+}
+
+main h1, .carrito-container h1, .titulo-carrito {
+    text-align: center !important;
+    width: 100% !important;
+    margin: 40px 0 !important;
+    display: block !important;
 }
