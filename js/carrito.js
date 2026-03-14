@@ -16,7 +16,7 @@ function renderCarrito (cartItems){
         const card = document.createElement("div");
         card.innerHTML = `<h3>${producto.nombre}</h3>
                           <h4>Precio: $${producto.precio}</h4>
-                          <div>
+                          <div class="cantidad-container">
                           <button class="restar">-</button>
                           <span>${producto.cantidad}</span>
                           <button class="sumar">+</button>

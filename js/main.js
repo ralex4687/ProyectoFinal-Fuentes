@@ -1,7 +1,7 @@
 const productos = [
     { id: 1, nombre:"Pizza Muzzarella", precio: 11500 }, 
 
-    { id: 2, nombre:"Pizza Napolitana", precio: 12500 },
+    { id: 2, nombre:"Pizza Napolitana", precio: 12500, Imagen:" img/pizza-napolitana.jpg"},
     { id: 3,nombre:"Pizza Cuatro quesos", precio: 14500 },
     { id: 4, nombre:"Pizza Jamon y morron", precio: 13500 },
     { id: 5, nombre:"Empanada de Jamon y queso", precio: 2500 },

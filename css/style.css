@@ -100,6 +100,7 @@ body {
 
 .cantidad-container {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 15px;
@@ -125,6 +126,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .cantidad {
@@ -179,4 +181,40 @@ body {
     margin-top: 30px;
     width: 100%;
     text-align: center;
+}
+a {
+    color: #2a363b;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    
+}
+
+a:hover {
+    color: #ff847c;
+    text-decoration: underline;
+}
+
+.link-carrito {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #99b898;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.carrito-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.titulo-carrito {
+    color: #2a363b;
+    margin-bottom: 30px;
+    
 }
