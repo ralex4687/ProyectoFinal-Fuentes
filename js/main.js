@@ -1,18 +1,26 @@
-const productos = [
-    { id: 1, nombre:"Pizza Muzzarella", precio: 11500, imagen:"img/pizza-muzarella.webp" },
-
-    { id: 2, nombre:"Pizza Napolitana", precio: 12500, imagen:"img/pizza-napo.webp" },
-    { id: 3,nombre:"Pizza Cuatro quesos", precio: 14500, imagen:"img/pizza-cuatroqueso.webp" },
-    { id: 4, nombre:"Pizza Jamon y morron", precio: 13500, imagen:"img/pizza-jamonymorron.webp" },
-    { id: 5, nombre:"Empanada de Jamon y queso", precio: 2500, imagen:"img/empanada-jyq.webp" },
-    { id: 6, nombre:"Empanada de Capresse", precio: 2500, imagen:"img/empanada-caprese.webp" },
-    { id: 7, nombre:"Empanada de Calabaza", precio: 2500, imagen:"img/empanada-calabaza.webp" },
-    { id: 8, nombre:"Empanada Panceta y ciruela", precio: 2500, imagen:"img/empanada-panceta.webp" },
-];
+let productos = [];
+const URL = "./db/data.json";
 
 let cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
 
-let productContainer = document.getElementById("product-container")
+let productContainer = document.getElementById("product-container");
+
+function obtenerProductos() {
+    fetch(URL)
+    .then(response => response.json())
+    .then(data => { productos = data;
+    renderProductos(productos);
+    agregarAlCarrito();
+
+    })
+    .catch(err => console.log("hubo un error:", err))
+    .finally(() => {console.log("proceso finalizado");
+});
+
+}
+
+obtenerProductos();
+
 
 function renderProductos(productsArray) {
     productContainer.innerHTML = "";
@@ -35,7 +43,7 @@ function renderProductos(productsArray) {
                  <button class="productoAgregar" id="${producto.id}">Agregar al carrito</button>
                  </div>`;
         
-                          productContainer.appendChild(card);
+        productContainer.appendChild(card);
 
 
         let cantidadLocal = 1;
@@ -59,8 +67,7 @@ function renderProductos(productsArray) {
 
 }
 
-renderProductos(productos);
-agregarAlCarrito();
+
 
 
 function agregarAlCarrito () {
@@ -103,11 +110,7 @@ function agregarAlCarrito () {
         };
 
     });
-};
-
-
-
-
+}
 
 
 
