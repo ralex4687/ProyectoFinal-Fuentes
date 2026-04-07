@@ -81,14 +81,14 @@ function agregarAlCarrito () {
             
             const cantidadElegida = parseInt(card.querySelector(".cantidad").textContent);
 
+            const seleccionado = productos.find(p => p.id == productId);
+
             const productoExistente = cartProducts.find(p => p.id == productId);
 
             if (productoExistente) {
                 productoExistente.cantidad = productoExistente.cantidad + cantidadElegida;
             }
             else {
-                const seleccionado = productos.find(p => p.id == productId);
-
                 const productoNuevo = {
                     id: seleccionado.id,
                     nombre: seleccionado.nombre,
@@ -104,6 +104,23 @@ function agregarAlCarrito () {
           
 
             localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+            
+            Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            }).fire({
+                icon: 'success',
+                title: `¡${cantidadElegida} ${seleccionado.nombre} agregado!`,
+                background: '#99b898', 
+                color: '#fff'
+            });
 
 
             card.querySelector(".cantidad").textContent = 1;
